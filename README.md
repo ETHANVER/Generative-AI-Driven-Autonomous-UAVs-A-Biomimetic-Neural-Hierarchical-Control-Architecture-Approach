@@ -1,0 +1,2 @@
+# Generative-AI-Driven-Autonomous-UAVs-A-Biomimetic-Neural-Hierarchical-Control-Architecture-Approach
+本研究計畫提出一款以模仿人類大腦、神經系統分工的無人機控制系統，以解決無人機自主系統在不同環境時所出現的決策不適應與低通用性等問題。模擬生物神經系統，將控制層劃分為負責高階邏輯推論的大腦 (Layer 1, LLM)、負責行為規劃與安全檢查的神經中樞 (Layer 2)，以及負責即時反射與控制的小腦 (Layer 3)。透過雲端 GPT-4o 結合 RAG 檢索增強生成技術與四大資料庫（環境、目標、規則、條件），Layer 1 能依據RAG來提升輸出決策的準確性，並經由 Layer 2 的地理圍欄與有限狀態機 (FSM) 進行將抽象的指令轉化為飛行路徑以及攔截錯誤指令的檢查，最終由 Layer 3 執行人工勢場法 (APF) 與阻抗控制進行即時避障與穩定飛行。
