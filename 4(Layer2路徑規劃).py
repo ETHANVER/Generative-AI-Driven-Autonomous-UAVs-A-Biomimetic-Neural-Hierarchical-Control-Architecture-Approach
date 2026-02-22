@@ -9,7 +9,7 @@ import random
 # ==========================================
 # 參數設定
 # ==========================================
-MAP_PATH = r"C:\Users\Ethan\Desktop\畢業專題3\新測試程式碼 2\airsim模擬器測試\ollama版本\meta-llama\llama-3.1-8b-instant V4\「視覺化記憶驗證實驗\整合LLM推論\Map_RT.EXR"
+MAP_PATH = r""
 DILATION_SIZE = 5   # 安全緩衝區
 STEP_SIZE = 10      # A* 步長
 
@@ -216,4 +216,5 @@ if __name__ == "__main__":
         else:
             print("❌ 地圖上找不到夠大的安全區域！請檢查 Map_RT.EXR 是否過暗或全黑。")
     else:
+
         print("地圖讀取失敗。")
