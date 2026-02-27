@@ -1,0 +1,172 @@
+[
+  {
+    "zone": "RT_BUI_01",
+    "event_type": "Geofencing_Blocked",
+    "decision": "PATROL RT_BUI_01 z=-20m",
+    "outcome": "Layer 2 攔截：建築禁航區低空飛行",
+    "note": "Layer 1 未遵守高度限制（應 z < -50m）",
+    "label": "Negative",
+    "text": "RT_BUI_01 Geofencing_Blocked PATROL RT_BUI_01 z=-20m Layer 2 攔截：建築禁航區低空飛行 Layer 1 未遵守高度限制（應 z < -50m）",
+    "timestamp": "2026-02-26T00:07:10"
+  },
+  {
+    "zone": "RT_FOR_01",
+    "event_type": "CommLoss",
+    "decision": "RECON Area1",
+    "outcome": "通訊中斷 620ms，切換自主模式",
+    "note": "森林區 RF 信號衰減，建議降低飛行速度",
+    "label": "Negative",
+    "text": "RT_FOR_01 CommLoss RECON Area1 通訊中斷 620ms，切換自主模式 森林區 RF 信號衰減，建議降低飛行速度",
+    "timestamp": "2026-02-26T00:07:10"
+  },
+  {
+    "zone": "RT_OPE_01",
+    "event_type": "Target_Found",
+    "decision": "SEARCH Open_Field",
+    "outcome": "發現可疑人員，YOLO confidence=0.91",
+    "note": "低空 8m 搜索效果最佳",
+    "label": "Positive",
+    "text": "RT_OPE_01 Target_Found SEARCH Open_Field 發現可疑人員，YOLO confidence=0.91 低空 8m 搜索效果最佳",
+    "timestamp": "2026-02-26T00:07:10"
+  },
+  {
+    "zone": "RT_BUI_01",
+    "event_type": "LLM_Hallucination",
+    "decision": "PATROL Building_Zone z=-30m",
+    "outcome": "Layer 2 Geofencing 攔截（第 2 次）",
+    "note": "Layer 1 對禁航區限制遺忘，需加強 [Constraints] 注入",
+    "label": "Negative",
+    "text": "RT_BUI_01 LLM_Hallucination PATROL Building_Zone z=-30m Layer 2 Geofencing 攔截（第 2 次） Layer 1 對禁航區限制遺忘，需加強 [Constraints] 注入",
+    "timestamp": "2026-02-26T00:07:10"
+  },
+  {
+    "zone": "RT_FOR_01",
+    "event_type": "Timeout",
+    "decision": "RECON Forest 航點序列",
+    "outcome": "任務逾時（90s），未完成全部航點",
+    "note": "林區航點數過多，建議減至 4 個以內",
+    "label": "Negative",
+    "text": "RT_FOR_01 Timeout RECON Forest 航點序列 任務逾時（90s），未完成全部航點 林區航點數過多，建議減至 4 個以內",
+    "timestamp": "2026-02-26T00:07:10"
+  },
+  {
+    "zone": "Unknown",
+    "event_type": "BatteryEmergency",
+    "decision": "Forced RTH",
+    "outcome": "Battery at 15%",
+    "note": "",
+    "label": "Negative",
+    "text": "Unknown BatteryEmergency Forced RTH Battery at 15% ",
+    "timestamp": "2026-02-26T00:07:10"
+  },
+  {
+    "zone": "RT_TC24_TEST",
+    "event_type": "Geofencing_Blocked",
+    "decision": "PATROL z=-5",
+    "outcome": "高度太低被攔截",
+    "note": "",
+    "label": "Negative",
+    "text": "RT_TC24_TEST Geofencing_Blocked PATROL z=-5 高度太低被攔截 ",
+    "timestamp": "2026-02-26T00:07:10"
+  },
+  {
+    "zone": "Unknown",
+    "event_type": "BatteryEmergency",
+    "decision": "Forced RTH",
+    "outcome": "Battery at 15%",
+    "note": "",
+    "label": "Negative",
+    "text": "Unknown BatteryEmergency Forced RTH Battery at 15% ",
+    "timestamp": "2026-02-26T00:07:54"
+  },
+  {
+    "zone": "RT_TC24_TEST",
+    "event_type": "Geofencing_Blocked",
+    "decision": "PATROL z=-5",
+    "outcome": "高度太低被攔截",
+    "note": "",
+    "label": "Negative",
+    "text": "RT_TC24_TEST Geofencing_Blocked PATROL z=-5 高度太低被攔截 ",
+    "timestamp": "2026-02-26T00:07:54"
+  },
+  {
+    "zone": "Unknown",
+    "event_type": "BatteryEmergency",
+    "decision": "Forced RTH",
+    "outcome": "Battery at 15%",
+    "note": "",
+    "label": "Negative",
+    "text": "Unknown BatteryEmergency Forced RTH Battery at 15% ",
+    "timestamp": "2026-02-26T00:34:27"
+  },
+  {
+    "zone": "RT_TC24_TEST",
+    "event_type": "Geofencing_Blocked",
+    "decision": "PATROL z=-5",
+    "outcome": "高度太低被攔截",
+    "note": "",
+    "label": "Negative",
+    "text": "RT_TC24_TEST Geofencing_Blocked PATROL z=-5 高度太低被攔截 ",
+    "timestamp": "2026-02-26T00:34:27"
+  },
+  {
+    "zone": "Unknown",
+    "event_type": "BatteryEmergency",
+    "decision": "Forced RTH",
+    "outcome": "Battery at 15%",
+    "note": "",
+    "label": "Negative",
+    "text": "Unknown BatteryEmergency Forced RTH Battery at 15% ",
+    "timestamp": "2026-02-26T00:36:01"
+  },
+  {
+    "zone": "RT_TC24_TEST",
+    "event_type": "Geofencing_Blocked",
+    "decision": "PATROL z=-5",
+    "outcome": "高度太低被攔截",
+    "note": "",
+    "label": "Negative",
+    "text": "RT_TC24_TEST Geofencing_Blocked PATROL z=-5 高度太低被攔截 ",
+    "timestamp": "2026-02-26T00:36:01"
+  },
+  {
+    "zone": "Unknown",
+    "event_type": "BatteryEmergency",
+    "decision": "Forced RTH",
+    "outcome": "Battery at 15%",
+    "note": "",
+    "label": "Negative",
+    "text": "Unknown BatteryEmergency Forced RTH Battery at 15% ",
+    "timestamp": "2026-02-26T00:43:02"
+  },
+  {
+    "zone": "RT_TC24_TEST",
+    "event_type": "Geofencing_Blocked",
+    "decision": "PATROL z=-5",
+    "outcome": "高度太低被攔截",
+    "note": "",
+    "label": "Negative",
+    "text": "RT_TC24_TEST Geofencing_Blocked PATROL z=-5 高度太低被攔截 ",
+    "timestamp": "2026-02-26T00:43:02"
+  },
+  {
+    "zone": "Unknown",
+    "event_type": "BatteryEmergency",
+    "decision": "Forced RTH",
+    "outcome": "Battery at 15%",
+    "note": "",
+    "label": "Negative",
+    "text": "Unknown BatteryEmergency Forced RTH Battery at 15% ",
+    "timestamp": "2026-02-26T10:55:23"
+  },
+  {
+    "zone": "RT_TC24_TEST",
+    "event_type": "Geofencing_Blocked",
+    "decision": "PATROL z=-5",
+    "outcome": "高度太低被攔截",
+    "note": "",
+    "label": "Negative",
+    "text": "RT_TC24_TEST Geofencing_Blocked PATROL z=-5 高度太低被攔截 ",
+    "timestamp": "2026-02-26T10:55:23"
+  }
+]

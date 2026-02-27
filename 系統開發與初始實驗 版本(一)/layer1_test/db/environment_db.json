@@ -1,0 +1,157 @@
+[
+  {
+    "id": "ENV-RT_OPE_01-TYPE",
+    "database": "environment",
+    "area_id": "RT_OPE_01",
+    "area_type": "Open_Field",
+    "danger_level": "Low",
+    "confidence": 0.682,
+    "grid_count": 41,
+    "chunk": "RT_OPE_01 是開闊平原（低危險，高速巡航理想），屬於Low危險等級，共佔 41 個網格格子，由 AirSim EXR 圖資自動分類，信心度 68%。",
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_OPE_01-BOUNDARY",
+    "database": "environment",
+    "area_id": "RT_OPE_01",
+    "chunk": "RT_OPE_01 邊界（AirSim NED）：西 0.0m，東 200.0m，南 0.0m，北 200.0m。座標中心約 (100.0, 100.0)。",
+    "boundary": {
+      "west": 0.0,
+      "east": 200.0,
+      "south": 0.0,
+      "north": 200.0
+    },
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_OPE_01-ALT",
+    "database": "environment",
+    "area_id": "RT_OPE_01",
+    "chunk": "RT_OPE_01 (Open_Field) 建議飛行高度：最低 5.0m，最高 30.0m（NED -5.0 至 -30.0），最佳高度 10.0m。",
+    "recommended_altitude_min": -30.0,
+    "recommended_altitude_max": -5.0,
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_VEG_01-TYPE",
+    "database": "environment",
+    "area_id": "RT_VEG_01",
+    "area_type": "Vegetation",
+    "danger_level": "Low",
+    "confidence": 0.78,
+    "grid_count": 8,
+    "chunk": "RT_VEG_01 是植被覆蓋區（低危險，視線受阻），屬於Low危險等級，共佔 8 個網格格子，由 AirSim EXR 圖資自動分類，信心度 78%。",
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_VEG_01-BOUNDARY",
+    "database": "environment",
+    "area_id": "RT_VEG_01",
+    "chunk": "RT_VEG_01 邊界（AirSim NED）：西 20.0m，東 140.0m，南 20.0m，北 200.0m。座標中心約 (80.0, 110.0)。",
+    "boundary": {
+      "west": 20.0,
+      "east": 140.0,
+      "south": 20.0,
+      "north": 200.0
+    },
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_VEG_01-ALT",
+    "database": "environment",
+    "area_id": "RT_VEG_01",
+    "chunk": "RT_VEG_01 (Vegetation) 建議飛行高度：最低 8.0m，最高 15.0m（NED -8.0 至 -15.0），最佳高度 12.0m。",
+    "recommended_altitude_min": -15.0,
+    "recommended_altitude_max": -8.0,
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_FOR_01-TYPE",
+    "database": "environment",
+    "area_id": "RT_FOR_01",
+    "area_type": "Forest",
+    "danger_level": "Medium",
+    "confidence": 0.92,
+    "grid_count": 46,
+    "chunk": "RT_FOR_01 是森林植被區（中度危險，通訊干擾風險），屬於Medium危險等級，共佔 46 個網格格子，由 AirSim EXR 圖資自動分類，信心度 92%。",
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_FOR_01-BOUNDARY",
+    "database": "environment",
+    "area_id": "RT_FOR_01",
+    "chunk": "RT_FOR_01 邊界（AirSim NED）：西 20.0m，東 180.0m，南 40.0m，北 180.0m。座標中心約 (100.0, 110.0)。",
+    "boundary": {
+      "west": 20.0,
+      "east": 180.0,
+      "south": 40.0,
+      "north": 180.0
+    },
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_FOR_01-ALT",
+    "database": "environment",
+    "area_id": "RT_FOR_01",
+    "chunk": "RT_FOR_01 (Forest) 建議飛行高度：最低 10.0m，最高 20.0m（NED -10.0 至 -20.0），最佳高度 15.0m。",
+    "recommended_altitude_min": -20.0,
+    "recommended_altitude_max": -10.0,
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_BUI_01-TYPE",
+    "database": "environment",
+    "area_id": "RT_BUI_01",
+    "area_type": "Building_Zone",
+    "danger_level": "High",
+    "confidence": 0.72,
+    "grid_count": 5,
+    "chunk": "RT_BUI_01 是建築密集區（高危險，禁航區），屬於High危險等級，共佔 5 個網格格子，由 AirSim EXR 圖資自動分類，信心度 72%。",
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_BUI_01-BOUNDARY",
+    "database": "environment",
+    "area_id": "RT_BUI_01",
+    "chunk": "RT_BUI_01 邊界（AirSim NED）：西 80.0m，東 120.0m，南 80.0m，北 140.0m。座標中心約 (100.0, 110.0)。",
+    "boundary": {
+      "west": 80.0,
+      "east": 120.0,
+      "south": 80.0,
+      "north": 140.0
+    },
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_BUI_01-ALT",
+    "database": "environment",
+    "area_id": "RT_BUI_01",
+    "chunk": "RT_BUI_01 (Building_Zone) 建議飛行高度：最低 50.0m，最高 60.0m（NED -50.0 至 -60.0），最佳高度 55.0m。",
+    "recommended_altitude_min": -60.0,
+    "recommended_altitude_max": -50.0,
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-RT_BUI_01-RESTRICTION",
+    "database": "environment",
+    "area_id": "RT_BUI_01",
+    "restriction": "No-Fly",
+    "chunk": "RT_BUI_01 為禁航區 (No-Fly Zone)：建築密集，Layer 1 飛入該區的決策必須被 Layer 2 Geofencing 攔截，並寫入情節記憶為負面事件。",
+    "source": "auto_generated_from_airsim_exr"
+  },
+  {
+    "id": "ENV-GLOBAL-AIRSIM-RT-MAP",
+    "database": "environment",
+    "area_id": "GLOBAL",
+    "chunk": "AirSim RT-EXR 語意網格地圖（10×10 格，共 100 格）：由高空俯拍渲染目標圖資自動分類生成。地形分佈：Open_Field(41格), Vegetation(8格), Forest(46格), Building_Zone(5格)。覆蓋範圍：200.0m×200.0m。AirSim NED 座標系。",
+    "grid_size": 10,
+    "total_cells": 100,
+    "type_counts": {
+      "Open_Field": 41,
+      "Vegetation": 8,
+      "Forest": 46,
+      "Building_Zone": 5
+    },
+    "source": "auto_generated_from_airsim_exr"
+  }
+]

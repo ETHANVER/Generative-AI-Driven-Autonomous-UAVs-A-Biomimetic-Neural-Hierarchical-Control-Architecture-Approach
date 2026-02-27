@@ -1,0 +1,102 @@
+[
+    {
+        "id": "COND-COMM-01",
+        "database": "conditions",
+        "component": "通訊系統 (Communication)",
+        "chunk": "通訊延遲閾值 (Comm Latency Threshold)：當 Layer 1 雲端 API 回傳決策延遲超過 500ms，Layer 2 應改由本地情節記憶庫進行自主導航或安全懸停，並記錄超時事件。",
+        "condition": "layer1_latency > 500ms",
+        "threshold_value": 500,
+        "threshold_unit": "ms",
+        "trigger_action": "Switch to autonomous mode / safe hover"
+    },
+    {
+        "id": "COND-COMM-02",
+        "database": "conditions",
+        "component": "通訊系統 (Communication)",
+        "chunk": "msgpack-rpc 通訊協定目標延遲 (msgpack-rpc Target Latency)：Python 地面站與 AirSim 之間採用 msgpack-rpc 協定，目標單次通訊延遲低於 10ms。",
+        "condition": "airsim_rpc_latency",
+        "threshold_value": 10,
+        "threshold_unit": "ms",
+        "trigger_action": "Log warning if exceeded"
+    },
+    {
+        "id": "COND-BATT-03",
+        "database": "conditions",
+        "component": "電力系統 (Power System)",
+        "chunk": "低電量警告 (Low Battery Warning)：電量低於 20% 時強制啟動 RTH（Return-to-Home）流程，Layer 1 與 Layer 2 均無法覆蓋。",
+        "condition": "battery_percentage < 20",
+        "threshold_value": 20,
+        "threshold_unit": "%",
+        "trigger_action": "Force RTH"
+    },
+    {
+        "id": "COND-BATT-04",
+        "database": "conditions",
+        "component": "電力系統 (Power System)",
+        "chunk": "電量警示預警 (Battery Pre-warning)：電量低於 35% 時，Layer 1 應開始規劃返航路徑，優先完成當前航點後返航，不再接受新任務。",
+        "condition": "battery_percentage < 35",
+        "threshold_value": 35,
+        "threshold_unit": "%",
+        "trigger_action": "Plan return route"
+    },
+    {
+        "id": "COND-SPEED-05",
+        "database": "conditions",
+        "component": "硬體限制 (Hardware Constraint)",
+        "chunk": "最大飛行速度 (Max Flight Speed)：Layer 3 控制向量輸出不得超過 5m/s，以避免 IMU 數據發散。Layer 2 路徑規劃時應以此為速度上限。",
+        "condition": "velocity_command > 5.0",
+        "threshold_value": 5.0,
+        "threshold_unit": "m/s",
+        "trigger_action": "Clamp velocity to 5.0 m/s"
+    },
+    {
+        "id": "COND-APF-06",
+        "database": "conditions",
+        "component": "控制算法 (Control Algorithm)",
+        "chunk": "APF 斥力啟動範圍 (APF Influence Distance rho_0)：人工勢場法 (Artificial Potential Field) 在障礙物進入 2.0m 感測範圍內時啟動斥力計算，Layer 3 以 30~50Hz 頻率執行。",
+        "condition": "obstacle_distance < 2.0",
+        "threshold_value": 2.0,
+        "threshold_unit": "m",
+        "trigger_action": "Activate APF repulsive force"
+    },
+    {
+        "id": "COND-RAG-07",
+        "database": "conditions",
+        "component": "決策閾值 (Decision Threshold)",
+        "chunk": "RAG 語意相似度過濾閾值 (RAG Similarity Threshold)：Top-K (K=3) 語意搜索中，餘弦相似度低於 0.75 的檢索結果視為語意雜訊，不得注入 System Prompt。",
+        "condition": "cosine_similarity < 0.75",
+        "threshold_value": 0.75,
+        "threshold_unit": "cosine_similarity",
+        "trigger_action": "Filter out retrieval result"
+    },
+    {
+        "id": "COND-CTRL-08",
+        "database": "conditions",
+        "component": "控制頻率 (Control Frequency)",
+        "chunk": "Layer 3 高頻控制迴圈頻率 (Layer 3 Control Loop)：Layer 3 Low-Level Flight Controller 運作頻率為 30~50Hz，以確保即時避障與姿態控制。",
+        "condition": "layer3_control_frequency",
+        "threshold_value": 30,
+        "threshold_unit": "Hz",
+        "trigger_action": "Maintain 30-50 Hz control loop"
+    },
+    {
+        "id": "COND-CTRL-09",
+        "database": "conditions",
+        "component": "控制頻率 (Control Frequency)",
+        "chunk": "Layer 2 監控迴圈頻率 (Layer 2 Monitor Loop)：Layer 2 Behavior Planner 的監控迴圈運作頻率為 10Hz，負責航點抵達確認與逾時偵測。",
+        "condition": "layer2_monitor_frequency",
+        "threshold_value": 10,
+        "threshold_unit": "Hz",
+        "trigger_action": "Maintain 10 Hz monitor loop"
+    },
+    {
+        "id": "COND-IMU-10",
+        "database": "conditions",
+        "component": "感測系統 (Sensor System)",
+        "chunk": "IMU 數據有效性 (IMU Data Validity)：AirSim 回傳的 IMU 數據若角速度超過 500 deg/s 或加速度超過 50 m/s² 時，判定為數據發散，應立即觸發安全懸停。",
+        "condition": "imu_angular_velocity > 500 or imu_acceleration > 50",
+        "threshold_angular": 500,
+        "threshold_accel": 50,
+        "trigger_action": "Safe hover"
+    }
+]

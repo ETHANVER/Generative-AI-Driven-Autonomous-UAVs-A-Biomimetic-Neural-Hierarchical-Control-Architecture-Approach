@@ -1,0 +1,47 @@
+{
+    "Area1": {
+        "type": "Forest",
+        "danger_level": "Medium",
+        "boundary": {
+            "north": 100.0,
+            "south": 0.0,
+            "east": 100.0,
+            "west": 0.0
+        },
+        "features": [
+            "高密度植被 (High Density Vegetation)",
+            "多樣地形 (Hilly Terrain)",
+            "通訊干擾風險 (Signal Loss Risk)"
+        ]
+    },
+    "Area2": {
+        "type": "Building_Zone",
+        "danger_level": "High",
+        "boundary": {
+            "north": 200.0,
+            "south": 100.0,
+            "east": 200.0,
+            "west": 100.0
+        },
+        "features": [
+            "密集建築 (Dense Structures)",
+            "室內/室外邊界 (Indoor/Outdoor Borders)",
+            "紅色禁航區 (Red No-Fly Zone)"
+        ]
+    },
+    "Area3": {
+        "type": "Open_Field",
+        "danger_level": "Low",
+        "boundary": {
+            "north": 0.0,
+            "south": -100.0,
+            "east": 100.0,
+            "west": 0.0
+        },
+        "features": [
+            "平坦開闊 (Flat Open Space)",
+            "高可視度 (High Visibility)",
+            "適合高速巡航 (Ideal for High-speed Cruise)"
+        ]
+    }
+}

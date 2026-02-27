@@ -1,0 +1,184 @@
+[
+  {
+    "id": "TGT-PERSON-01",
+    "database": "targets",
+    "target_type": "人員 (Personnel)",
+    "priority": 1,
+    "chunk": "偵蒐目標：人員 (Personnel)，最高優先級。視覺特徵包含人體輪廓 (Humanoid Shape)、衣物色彩對比 (Clothing Contrast)、移動熱信號 (Thermal Signature)。YOLO 辨識信心度閾值設為 0.85。",
+    "visual_features": [
+      "Humanoid Shape",
+      "Clothing Contrast",
+      "Thermal Signature"
+    ],
+    "kinematics": {
+      "speed_range_kmh": [
+        0,
+        15
+      ],
+      "typical_movement": "Irregular/Pedestrian"
+    },
+    "behavior_tree": {
+      "on_detect": "APPROACH_15M",
+      "on_verify": "HOVER_AND_REPORT",
+      "on_lost": "EXPAND_SEARCH_30M"
+    },
+    "yolo_confidence_threshold": 0.85,
+    "recommended_action": "FOLLOW_BEHAVIOR_TREE"
+  },
+  {
+    "id": "TGT-PERSON-02",
+    "database": "targets",
+    "target_type": "人員 (Personnel)",
+    "priority": 1,
+    "chunk": "人員目標偵測建議：於森林區 (Area1) 使用熱像儀穿透植被，在開闊區 (Area3) 使用 RGB 相機配合 YOLO World v8L 進行高精度辨識。",
+    "area_specific_strategy": {
+      "Area1": "Thermal camera",
+      "Area3": "RGB + YOLO"
+    }
+  },
+  {
+    "id": "TGT-VEHICLE-03",
+    "database": "targets",
+    "target_type": "地面載具 (Ground Vehicle)",
+    "priority": 2,
+    "chunk": "偵蒐目標：地面載具 (Ground Vehicle)。視覺特徵包含金屬反射 (Metallic Reflection)、矩形輪廓 (Boxy Shape)、引擎熱反應 (Engine Heat)。建議利用 YOLO 特徵模板比對車頂標誌並追蹤移動向量。",
+    "visual_features": [
+      "Metallic Reflection",
+      "Boxy Shape",
+      "Engine Heat"
+    ],
+    "kinematics": {
+      "speed_range_kmh": [
+        10,
+        80
+      ],
+      "typical_movement": "Roadways"
+    },
+    "behavior_tree": {
+      "on_detect": "APPROACH_100M",
+      "on_verify": "ORBIT_TRACK",
+      "on_lost": "EXPAND_SEARCH_500M"
+    },
+    "yolo_confidence_threshold": 0.8,
+    "recommended_action": "FOLLOW_BEHAVIOR_TREE"
+  },
+  {
+    "id": "TGT-VEHICLE-04",
+    "database": "targets",
+    "target_type": "地面載具 (Ground Vehicle)",
+    "priority": 2,
+    "chunk": "載具追蹤策略：偵測到載具後，Layer 1 應生成沿載具預測移動路徑的追蹤航點，Layer 2 以動態更新模式執行，間隔 2 秒修正一次航點。",
+    "tracking_interval_sec": 2,
+    "action": "Dynamic waypoint update"
+  },
+  {
+    "id": "TGT-COMMS-05",
+    "database": "targets",
+    "target_type": "通訊設施 (Communications Tower)",
+    "priority": 3,
+    "chunk": "偵蒐目標：通訊設施 (Communications Tower)。視覺特徵包含細長結構 (Slender Support)、天線陣列 (Antenna Array)、固定座標 (Static Position)。建立多角度環繞航點進行偵蒐，紀錄語音訊號特徵。",
+    "visual_features": [
+      "Slender Support",
+      "Antenna Array",
+      "Static Position"
+    ],
+    "kinematics": {
+      "speed_range_kmh": [
+        0,
+        0
+      ],
+      "typical_movement": "Static"
+    },
+    "behavior_tree": {
+      "on_detect": "APPROACH_50M",
+      "on_verify": "ORBIT_AND_SCAN",
+      "on_lost": "REPORT_ERROR"
+    },
+    "yolo_confidence_threshold": 0.75,
+    "recommended_action": "FOLLOW_BEHAVIOR_TREE"
+  },
+  {
+    "id": "TGT-OBSTACLE-06",
+    "database": "targets",
+    "target_type": "靜態障礙物 (Static Obstacle)",
+    "priority": 4,
+    "chunk": "偵蒐目標：靜態障礙物 (Static Obstacle)。特徵為深度突發變化 (Sudden Depth Change) 與不可通行邊界 (Impassable Barrier)。偵測到後立即觸發 APF 斥力，並在情節記憶庫標記為負面事件。",
+    "visual_features": [
+      "Sudden Depth Change",
+      "Impassable Barrier"
+    ],
+    "recommended_action": "立即觸發 APF 斥力避障，並在情節記憶庫中標記座標為「障礙物負面事件」，避免後續任務重複接近。",
+    "memory_label": "NEGATIVE_OBSTACLE"
+  },
+  {
+    "id": "TGT-BUILDING-07",
+    "database": "targets",
+    "target_type": "建築物 (Building Structure)",
+    "priority": 5,
+    "chunk": "偵蒐目標：建築物 (Building Structure)。特徵為矩形固定輪廓、大型反射面。出現在 Area2 範圍內時，Layer 2 Geofencing 應阻止接近，不得跟隨 Layer 1 決策進入。",
+    "visual_features": [
+      "Rectangular Fixed Structure",
+      "Large Reflective Surface"
+    ],
+    "recommended_action": "若位於 Area2 禁航區內，禁止接近，記錄建築物座標至環境資料庫並更新語意地圖。"
+  },
+  {
+    "id": "TGT-UNKNOWN-08",
+    "database": "targets",
+    "target_type": "未知目標 (Unknown Target)",
+    "priority": 6,
+    "chunk": "偵蒐目標：未知目標 (Unknown Target)，YOLO 信心度不足 (低於 0.60)。Layer 1 應下達「降低高度」或「多角度偵查」指令，而非直接忽略，以確保偵蒐完整性。",
+    "visual_features": [
+      "Unknown / Low Confidence Detection"
+    ],
+    "yolo_confidence_threshold": 0.6,
+    "recommended_action": "Layer 1 啟動「降低高度至 5m」或「多角度環繞偵查」策略，提升辨識率後再做決策。"
+  },
+  {
+    "id": "TGT-DYN-UNK-FAE8",
+    "database": "targets",
+    "target_id": "TGT-DYN-UNK-FAE8",
+    "target_type": "unknown",
+    "danger_level": "High",
+    "colors": [],
+    "behaviors": [],
+    "confidence_threshold": 0.7,
+    "recommended_action": "HOVER_AND_REPORT",
+    "chunk": "動態目標條目 [TGT-DYN-UNK-FAE8]：偵蒐目標類型為未知目標，特徵顏色：未指定，行為標記：無特殊。危險等級：High，YOLO 信心度閾值 70%。建議動作：HOVER_AND_REPORT。原始任務指令：「執行任務 zone forest search target」",
+    "source": "dynamic_generated",
+    "generated_from": "執行任務 zone forest search target",
+    "timestamp": "2026-02-26T10:55:23"
+  },
+  {
+    "id": "TGT-DYN-PER-0812",
+    "database": "targets",
+    "target_id": "TGT-DYN-PER-0812",
+    "target_type": "personnel",
+    "danger_level": "High",
+    "colors": [],
+    "behaviors": [
+      "可疑"
+    ],
+    "confidence_threshold": 0.82,
+    "recommended_action": "HOVER_AND_REPORT",
+    "chunk": "動態目標條目 [TGT-DYN-PER-0812]：偵蒐目標類型為人員，特徵顏色：未指定，行為標記：可疑。危險等級：High，YOLO 信心度閾值 82%。建議動作：HOVER_AND_REPORT。原始任務指令：「請前往 Area1 森林區，執行偵蒐任務，尋找可疑人員，注意保持適當高度」",
+    "source": "dynamic_generated",
+    "generated_from": "請前往 Area1 森林區，執行偵蒐任務，尋找可疑人員，注意保持適當高度",
+    "timestamp": "2026-02-26T18:06:40"
+  },
+  {
+    "id": "TGT-DYN-VEH-C034",
+    "database": "targets",
+    "target_id": "TGT-DYN-VEH-C034",
+    "target_type": "vehicle",
+    "danger_level": "Medium",
+    "colors": [],
+    "behaviors": [],
+    "confidence_threshold": 0.7,
+    "recommended_action": "FOLLOW_AND_REPORT",
+    "chunk": "動態目標條目 [TGT-DYN-VEH-C034]：偵蒐目標類型為車輛，特徵顏色：未指定，行為標記：無特殊。危險等級：Medium，YOLO 信心度閾值 70%。建議動作：FOLLOW_AND_REPORT。原始任務指令：「在目前長寬為 600m x 450m 的衛星圖資(Global_Area)中，幫我搜索並標記所有潛在的軍事車輛 (包含裝甲車、坦克)。」",
+    "source": "dynamic_generated",
+    "generated_from": "在目前長寬為 600m x 450m 的衛星圖資(Global_Area)中，幫我搜索並標記所有潛在的軍事車輛 (包含裝甲車、坦克)。",
+    "timestamp": "2026-02-26T21:09:06"
+  }
+]

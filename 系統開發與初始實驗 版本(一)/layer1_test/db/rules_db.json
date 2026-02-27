@@ -1,0 +1,99 @@
+[
+    {
+        "id": "RULE-SAFE-01",
+        "database": "rules",
+        "category": "Safety",
+        "chunk": "避障優先 (Obstacle Avoidance Priority)：無人機在任何飛行模式下，若 Layer 3 偵測到前方 2m 內有障礙物，必須立即啟動 APF 斥力跳轉或自主避讓，優先於所有其他指令。",
+        "severity": "CRITICAL",
+        "trigger_condition": "obstacle_distance < 2.0m"
+    },
+    {
+        "id": "RULE-SOP-02",
+        "database": "rules",
+        "category": "SOP",
+        "chunk": "森林區高度限制 (Forest Altitude Limit)：在 Area1 森林地帶執行任務時，飛行高度應維持在 10m 至 20m 之間（NED 座標 -10 至 -20），以確保通訊穩定並避開地面植被與樹梢。",
+        "severity": "HIGH",
+        "applies_to_area": "Area1",
+        "altitude_range_nec": {
+            "min": -20.0,
+            "max": -10.0
+        }
+    },
+    {
+        "id": "RULE-SOP-03",
+        "database": "rules",
+        "category": "SOP",
+        "chunk": "禁航區規定 (No-Fly Zone)：禁止飛入 Area2 座標標記為紅色的建築物內部或其上方 5m 範圍內，違反者由 Layer 2 Geofencing 強制攔截並記入情節記憶庫。",
+        "severity": "CRITICAL",
+        "applies_to_area": "Area2",
+        "action": "Block and log to episodic memory"
+    },
+    {
+        "id": "RULE-BRAIN-04",
+        "database": "rules",
+        "category": "Hallucination Control",
+        "chunk": "幻覺監控 (Hallucination Interception)：Layer 2 必須攔截所有座標超出 environment.json 定義邊界的 Layer 1 決策指令，被攔截的指令應立即寫入情節記憶庫，標記為負面事件。",
+        "severity": "CRITICAL",
+        "action": "Geofence block + episodic memory write"
+    },
+    {
+        "id": "RULE-TASK-05",
+        "database": "rules",
+        "category": "Mission SOP",
+        "chunk": "目標鎖定 SOP (Target Lock SOP)：YOLO 辨識發現目標 (Target Found) 時，系統應立即向 Layer 1 回報並觸發「任務中斷與懸停 (Mission Interrupt & Hover)」，等待 Layer 1 進一步下達偵蒐或追蹤指令。",
+        "severity": "HIGH",
+        "action": "Hover + notify Layer1"
+    },
+    {
+        "id": "RULE-BATT-06",
+        "database": "rules",
+        "category": "Battery Management",
+        "chunk": "低電量返航 (Low Battery RTH)：電池電量低於 20% 時，無論任務狀態如何，系統必須強制執行自動返航 (Return to Home, RTH) 流程，Layer 1 與 Layer 2 均不得覆蓋此指令。",
+        "severity": "CRITICAL",
+        "trigger_condition": "battery < 20%",
+        "action": "Force RTH"
+    },
+    {
+        "id": "RULE-COMM-07",
+        "database": "rules",
+        "category": "Communication",
+        "chunk": "通訊逾時自主模式 (Comm Timeout Autonomous)：當 Layer 2 於 500ms 內未收到 Layer 1 決策更新，應自動切換至本地情節記憶庫主導的自主導航模式或執行安全懸停，直至通訊恢復。",
+        "severity": "HIGH",
+        "trigger_condition": "layer1_timeout > 500ms",
+        "action": "Switch to autonomous mode"
+    },
+    {
+        "id": "RULE-SPEED-08",
+        "database": "rules",
+        "category": "Hardware Constraint",
+        "chunk": "速度限制 (Speed Limit)：Layer 3 控制向量輸出的線速度不得超過 5m/s，以避免 IMU 數據發散與飛行姿態失控，Layer 2 在路徑規劃時應以此為上限設定航點間速度。",
+        "severity": "HIGH",
+        "max_speed": 5.0,
+        "unit": "m/s"
+    },
+    {
+        "id": "RULE-RECON-09",
+        "database": "rules",
+        "category": "Mission SOP",
+        "chunk": "偵蒐重複禁止 (No Repeat Recon)：情節記憶庫中已標記「偵蒐完成」的區域，Layer 1 在下次決策時不應重複指派巡邏該區域，除非偵蒐時間超過 30 分鐘或任務重啟。",
+        "severity": "MEDIUM",
+        "action": "Skip visited recon areas"
+    },
+    {
+        "id": "RULE-RAG-10",
+        "database": "rules",
+        "category": "RAG System",
+        "chunk": "RAG 相似度過濾 (RAG Similarity Filter)：向量檢索結果中，相似度低於閾值 0.75 的條目視為語意雜訊，應被過濾，不得注入 System Prompt 的 [Constraints] 區塊。",
+        "severity": "MEDIUM",
+        "threshold": 0.75
+    },
+    {
+        "id": "RULE-FAILSAFE-11",
+        "database": "rules",
+        "category": "Fail-Safe",
+        "chunk": "Fail-Safe 擴大機制 (Fail-Safe)：在極端情況（嚴重 IMU 偏差、連續多次 Geofence 違規、電量急降）下，系統應自動進入安全懸停並等待人工介入，而非執行錯誤指令。目標 LLM 幻覺攔截率需高於 95%。",
+        "severity": "CRITICAL",
+        "target_interception_rate": 0.95,
+        "action": "Safe hover + await manual"
+    }
+]

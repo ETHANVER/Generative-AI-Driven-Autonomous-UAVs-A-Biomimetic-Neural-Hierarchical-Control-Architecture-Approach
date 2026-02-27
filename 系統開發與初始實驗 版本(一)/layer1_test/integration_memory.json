@@ -1,0 +1,22 @@
+[
+  {
+    "zone": "Unknown",
+    "event_type": "GEOFENCE_VIOLATION",
+    "decision": "N/A",
+    "outcome": "任務 L1_RECON_F722B2: ❌ 禁航區攔截: Area2 (Building_Zone, 危險等級:High)",
+    "note": "",
+    "label": "Negative",
+    "text": "Unknown GEOFENCE_VIOLATION N/A 任務 L1_RECON_F722B2: ❌ 禁航區攔截: Area2 (Building_Zone, 危險等級:High) ",
+    "timestamp": "2026-02-26T02:05:51"
+  },
+  {
+    "zone": "Unknown",
+    "event_type": "TASK_ABORT",
+    "decision": "N/A",
+    "outcome": "地理圍欄攔截: ❌ 禁航區攔截: Area2 (Building_Zone, 危險等級:High)",
+    "note": "",
+    "label": "Negative",
+    "text": "Unknown TASK_ABORT N/A 地理圍欄攔截: ❌ 禁航區攔截: Area2 (Building_Zone, 危險等級:High) ",
+    "timestamp": "2026-02-26T02:05:51"
+  }
+]
